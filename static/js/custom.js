@@ -58,7 +58,6 @@ $(document).ready(function() {
 
   // 添加消息到窗口,对message进行转义，防止html被浏览器渲染
   function addMessage(message,imgName) {
-    $(".answer .tips").css({"display":"none"});    // 打赏卡隐藏
     chatInput.val('');
     var escapedMessage = escapeHtml(message);
     var messageElement = $('<div class="row message-bubble"><img class="chat-icon" src="./static/images/' + imgName + '"><p class="message-text">' +  escapedMessage + '</p></div>');
@@ -69,7 +68,6 @@ $(document).ready(function() {
 
   // 请求失败不用转义html
   function addFailMessage(message) {
-    $(".answer .tips").css({"display":"none"});      // 打赏卡隐藏
     chatInput.val('');
     var messageElement = $('<div class="row message-bubble"><img class="chat-icon" src="./static/images/chatgpt.png"><p class="message-text">' +  message + '</p></div>');
     chatWindow.append(messageElement);
@@ -90,7 +88,7 @@ $(document).ready(function() {
     if ($(".key .ipt-1").prop("checked")){
       var apiKey = $(".key .ipt-2").val();
       if (apiKey.length < 20 ){
-          common_ops.alert("请正确的 api key ！",function(){
+          common_ops.alert("请输入正确的 api key ！",function(){
             chatInput.val('');
             // 重新绑定键盘事件
             chatInput.on("keydown",handleEnter);
@@ -143,8 +141,6 @@ $(document).ready(function() {
       }),
       success: function(res) {
         const resp = res["choices"][0]["message"];
-        const id = res["id"];
-	addMessage(id,"chatgpt.png");
         addMessage(resp.content,"chatgpt.png");
         // 收到回复，让按钮可点击
         chatBtn.attr('disabled',false)
@@ -172,6 +168,11 @@ $(document).ready(function() {
   // 绑定Enter键盘事件
   chatInput.on("keydown",handleEnter);
   
+  // 禁用右键菜单
+  document.addEventListener('contextmenu',function(e){
+    e.preventDefault();  // 阻止默认事件
+  });
+	
   // 禁止键盘F12键
   document.addEventListener('keydown',function(e){
     if(e.key == 'F12'){

@@ -172,11 +172,6 @@ $(document).ready(function() {
   // 绑定Enter键盘事件
   chatInput.on("keydown",handleEnter);
   
-  // 禁用右键菜单
-  document.addEventListener('contextmenu',function(e){
-    e.preventDefault();  // 阻止默认事件
-  });
-
   // 禁止键盘F12键
   document.addEventListener('keydown',function(e){
     if(e.key == 'F12'){

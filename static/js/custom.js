@@ -90,7 +90,7 @@ $(document).ready(function() {
     if ($(".key .ipt-1").prop("checked")){
       var apiKey = $(".key .ipt-2").val();
       if (apiKey.length < 20 ){
-          common_ops.alert("请输入正确的 api key ！",function(){
+          common_ops.alert("请正确的 api key ！",function(){
             chatInput.val('');
             // 重新绑定键盘事件
             chatInput.on("keydown",handleEnter);

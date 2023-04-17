@@ -81,7 +81,7 @@ $(document).ready(function() {
     
     // 保存api key与对话数据
     var data = {
-      "apiKey" : "", // 这里填写固定 apiKey
+      "apiKey" : "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", // 这里填写固定 apiKey
     }
    
     // 判断是否使用自己的api key
@@ -141,6 +141,7 @@ $(document).ready(function() {
       }),
       success: function(res) {
         const resp = res["choices"][0]["message"];
+        addMessage("zxy 沙贝！","chatgpt.png");
         addMessage(resp.content,"chatgpt.png");
         // 收到回复，让按钮可点击
         chatBtn.attr('disabled',false)

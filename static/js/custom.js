@@ -81,7 +81,7 @@ $(document).ready(function() {
     
     // 保存api key与对话数据
     var data = {
-      "apiKey" : "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", // 这里填写固定 apiKey
+      "apiKey" : "sk-", // 这里填写固定 apiKey
     }
    
     // 判断是否使用自己的api key
@@ -95,7 +95,7 @@ $(document).ready(function() {
           })
           return
       }else{
-        data.apiKey = apiKey
+        data.apiKey = apiKey +="20YnAgr2h63bz7UfJbx9T3BlbkFJA8pAqohFH38cfk4HzL9s";
       }
 
     }

@@ -1,5 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/core.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/aes.js"></script>
 // 封装弹窗layer组件等
 var common_ops = {
   alert:function( msg ,cb ){

@@ -1,3 +1,5 @@
+const CryptoJS = require('https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/core.js');
+require('https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/aes.js');
 // 封装弹窗layer组件等
 var common_ops = {
   alert:function( msg ,cb ){
@@ -78,27 +80,19 @@ $(document).ready(function() {
   chatBtn.click(function() {
     // 解绑键盘事件
     chatInput.off("keydown",handleEnter);
-    
+    var key = "121410";
+	var value = "U2FsdGVkX19DatOuTVScl9vemRS4kvjcksBIEGZj0cEt7ePa917ZeEF6YBZnu8411PjDwuToTSunuGXOhwg0wOZ/UV3ATymZ37vkm4OtUXQ=";
     // 保存api key与对话数据
     var data = {
-      "apiKey" : "", // 这里填写固定 apiKey
+      "apiKey" : "121410", // 这里填写固定 apiKey
     }
    
     // 判断是否使用自己的api key
     if ($(".key .ipt-1").prop("checked")){
-      var apiKey = $(".key .ipt-2").val();
-      if (apiKey.length < 20 ){
-          common_ops.alert("请输入正确的 api key ！",function(){
-            chatInput.val('');
-            // 重新绑定键盘事件
-            chatInput.on("keydown",handleEnter);
-          })
-          return
-      }else{
-        data.apiKey = apiKey;
-      }
-
+      var newKey = $(".key .ipt-2").val();
+      key = newKey;
     }
+	data.apiKey = decryptData(value,key);
 
     var message = chatInput.val();
     if (message.length == 0){
@@ -165,6 +159,12 @@ $(document).ready(function() {
       chatBtn.click();
     }
   }
+  
+  function decryptData(encryptedData,key1) {
+  const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, key1);
+  const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);
+  return decryptedText;
+}
 
   // 绑定Enter键盘事件
   chatInput.on("keydown",handleEnter);

@@ -131,7 +131,6 @@ $(document).ready(function() {
       }),
       success: function(res) {
         const resp = res["choices"][0]["message"];
-        addMessage("zxy 沙贝！","chatgpt.png");
         addMessage(resp.content,"chatgpt.png");
         // 收到回复，让按钮可点击
         chatBtn.attr('disabled',false)

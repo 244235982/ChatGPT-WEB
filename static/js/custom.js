@@ -113,8 +113,6 @@ $(document).ready(function() {
 
     data.prompt = messages
 
-    console.log(data);
-
     // 发送信息到后台
     $.ajax({
       url: 'https://open.aiproxy.xyz/v1/chat/completions',
